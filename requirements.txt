@@ -10,3 +10,4 @@ torch>=1.4.0
 markdown==3.1.1
 tqdm>=4.36.1
 wget==3.2
+pytorch_pretrained_bert>=0.6.2
