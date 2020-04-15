@@ -5,6 +5,8 @@
 import pandas as pd
 import numpy as np
 import os
+import getopt
+import sys
 #import torch
 
 #from transformers import BertTokenizer, BertForQuestionAnswering
@@ -16,13 +18,40 @@ from data_process import generate_data
 
 if __name__ == "__main__":
   
+
   #check if corpus exists
   data_file = './covid_corpus.csv'
   isFile = os.path.isfile(data_file)
   if isFile == False:
+   
+     dataset_folder = ''
+   
+     try:
+        opts, args = getopt.getopt(sys.argv[1:],"hi:")
+    
+     except getopt.GetoptError:
+        print('Usage : cord19_QA_bot.py -i <dataset_folder>')
+        sys.exit(2)
+        
+        
+     if len(sys.argv[1:]) < 1:
+        print('Usage : cord19_QA_bot.py -i <dataset_folder>')
+        sys.exit(2)
+        
+     for opt, arg in opts:
+        if opt == '-h':
+           print('cord19_QA_bot.py -i '../input/'')
+           sys.exit()
+        elif opt == "-i":
+           dataset_folder = arg  
+         
+           
+      
+     print('Dataset Folder is : ', dataset_folder)
      #Generating corpus file
-     printf("Generating Corpus CSV File...")
-     generate_data()
+     print("Generating Corpus CSV File...")
+     generate_data(dataset_folder=dataset_folder)
+     
 
 # Read corpus
   with open(data_file, 'rb') as f:

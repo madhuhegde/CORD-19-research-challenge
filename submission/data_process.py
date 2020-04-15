@@ -158,15 +158,15 @@ def generate_text_corpus(corpus_files, text_file:str=None):
             corp_file.write("\n")
         
 
-def generate_data(pre_training=False):
-  #find all the files
-    folder = './input/CORD-19-research-challenge/biorxiv_medrxiv/biorxiv_medrxiv/'
+def generate_data(dataset_folder=None, pre_training=False):
+    #find all the files
+    folder = dataset_folder+'/biorxiv_medrxiv/biorxiv_medrxiv/'
     all_files = find_filenames(folder)
-    folder = biorxiv_dir = './input/CORD-19-research-challenge/comm_use_subset/comm_use_subset/'
+    folder = biorxiv_dir = dataset_folder+'comm_use_subset/comm_use_subset/'
     all_files.extend(find_filenames(folder))
-    folder = biorxiv_dir = './input/CORD-19-research-challenge/noncomm_use_subset/noncomm_use_subset/'
+    folder = biorxiv_dir = dataset_folder+'/noncomm_use_subset/noncomm_use_subset/'
     all_files.extend(find_filenames(folder))
-    folder = './input/CORD-19-research-challenge/custom_license/custom_license/'
+    folder = dataset_folder+'/custom_license/custom_license/'
     all_files.extend(find_filenames(folder))
 
     print("Total number of articles retrieved:", len(all_files))
